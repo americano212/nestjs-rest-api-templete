@@ -6,6 +6,7 @@ import { User } from '#entities/user.entity';
 
 import { CreateUserDto } from './dto';
 import { NullableType } from 'src/common/types';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersRepository {
@@ -48,6 +49,11 @@ export class UsersRepository {
 
   public async setRefreshToken(userId: number, token: string): Promise<boolean> {
     const result = await this.usersRepository.update({ userId: userId }, { refreshToken: token });
+    return result.affected ? true : false;
+  }
+
+  public async update(userId: number, updateUserdata: UpdateUserDto): Promise<boolean> {
+    const result = await this.usersRepository.update({ userId }, updateUserdata);
     return result.affected ? true : false;
   }
 }

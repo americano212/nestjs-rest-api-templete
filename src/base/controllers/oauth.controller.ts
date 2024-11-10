@@ -1,5 +1,5 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 import {
   AuthService,
@@ -11,11 +11,18 @@ import {
   Payload,
 } from '../../auth';
 import { ReqUser } from '../../common';
+import { SNSLoginDto } from '../dto';
 
 @ApiTags('Auth')
 @Controller('login')
 export class OAuthController {
   constructor(private readonly auth: AuthService) {}
+
+  @ApiBody({ type: SNSLoginDto })
+  @Post('/sns')
+  public async snsLogin(@Body() data: SNSLoginDto): Promise<JwtSign> {
+    return await this.auth.snsLogin(data);
+  }
 
   @Get('/google')
   @UseGuards(GoogleLoginGuard)

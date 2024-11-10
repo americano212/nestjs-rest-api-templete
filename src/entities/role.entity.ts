@@ -1,12 +1,11 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
-
 import { UserRole } from './user-role.entity';
-import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('role')
 export class Role {
-  @PrimaryGeneratedColumn({ type: 'int', unsigned: true, name: 'role_id' })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   @IsInt()
   public roleId!: number;
 

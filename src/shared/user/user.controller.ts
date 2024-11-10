@@ -1,12 +1,12 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 
 import { User } from '#entities/user.entity';
 
-import { LocalRegisterDto, GiveRoleToUserDto } from './dto';
+import { LocalRegisterDto, GiveRoleToUserDto, UpdateUserDto } from './dto';
 import { UserService } from './user.service';
 import { SuccessResponseDto } from 'src/common/dto';
-import { Role, Roles } from 'src/common';
+import { Role, Roles, UserId } from 'src/common';
 
 @ApiBearerAuth()
 @ApiTags('User')
@@ -24,5 +24,13 @@ export class UserController {
   @Post('role')
   public async giveRoleToUser(@Body() data: GiveRoleToUserDto): Promise<SuccessResponseDto> {
     return { isSuccess: await this.user.giveRole(data) };
+  }
+
+  @Patch()
+  public async update(
+    @UserId() userId: number,
+    @Body() updateUserdata: UpdateUserDto,
+  ): Promise<SuccessResponseDto> {
+    return { isSuccess: await this.user.update(userId, updateUserdata) };
   }
 }

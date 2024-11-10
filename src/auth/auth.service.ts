@@ -8,6 +8,8 @@ import { UsersRepository } from '../shared/user/user.repository';
 import { JwtPayload, JwtSign, Payload } from './auth.interface';
 import { SNSUserDto } from 'src/shared/user/dto';
 import { NullableType } from 'src/common/types';
+import { SNSLoginDto } from 'src/base/dto';
+import { UserService } from 'src/shared/user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +18,14 @@ export class AuthService {
     private readonly jwt: JwtService,
     private readonly util: UtilService,
     private readonly config: ConfigService,
+    private readonly user: UserService,
   ) {}
+
+  public async snsLogin(snsUser: SNSLoginDto): Promise<JwtSign> {
+    let user = await this.validateSNSUser(snsUser);
+    user = user ? user : await this.user.createSNSUser(snsUser);
+    return this.jwtSign(user);
+  }
 
   public async validateUser(email: string, password: string): Promise<NullableType<User>> {
     const user = await this.usersRepository.findOneByEmail(email);
@@ -36,18 +45,6 @@ export class AuthService {
     return user;
   }
 
-  public async jwtSign(data: Payload): Promise<JwtSign> {
-    const payload: JwtPayload = {
-      sub: data.userId,
-      username: data.username,
-      roles: data.roles,
-    };
-    const accessToken = await this.generateAccessToken(payload);
-    const refreshToken = await this.generateRefreshToken(payload.sub);
-    await this.usersRepository.setRefreshToken(data.userId, refreshToken);
-    return { accessToken, refreshToken };
-  }
-
   private async generateAccessToken(payload: JwtPayload): Promise<string> {
     return this.jwt.signAsync(payload, {
       expiresIn: this.config.get('jwt.accessTokenExpire'),
@@ -63,6 +60,18 @@ export class AuthService {
         secret: this.config.get('jwt.refreshSecret'),
       },
     );
+  }
+
+  public async jwtSign(data: Payload): Promise<JwtSign> {
+    const payload: JwtPayload = {
+      sub: data.userId,
+      username: data.username,
+      roles: data.roles,
+    };
+    const accessToken = await this.generateAccessToken(payload);
+    const refreshToken = await this.generateRefreshToken(payload.sub);
+    await this.usersRepository.setRefreshToken(data.userId, refreshToken);
+    return { accessToken, refreshToken };
   }
 
   public jwtVerify(token: string): Payload | null {
