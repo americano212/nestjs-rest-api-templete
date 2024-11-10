@@ -17,4 +17,12 @@ export class UtilService {
     const isMatch = await bcrypt.compare(password, passwordHash);
     return isMatch;
   }
+
+  public async intersection<T>(A: T[], B: T[]): Promise<T[]> {
+    return A.filter((x) => B.includes(x));
+  }
+
+  public async difference<T>(A: T[], B: T[]): Promise<T[]> {
+    return A.filter((x) => !B.includes(x));
+  }
 }

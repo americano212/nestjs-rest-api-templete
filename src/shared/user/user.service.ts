@@ -8,6 +8,7 @@ import { RoleService } from '../role/providers';
 import { UtilService } from '../../common';
 import { LocalRegisterDto, GiveRoleToUserDto } from './dto';
 import { SNSUserDto } from './dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -47,5 +48,9 @@ export class UserService {
 
   public async isExistEmail(email: string): Promise<boolean> {
     return await this.usersRepository.isExistEmail(email);
+  }
+
+  public async update(userId: number, updateUserdata: UpdateUserDto): Promise<boolean> {
+    return await this.usersRepository.update(userId, updateUserdata);
   }
 }
