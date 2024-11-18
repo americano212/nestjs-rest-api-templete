@@ -43,7 +43,7 @@
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.4.7",
     "@nestjs/swagger": "^7.4.2",
-    "@nestjs/typeorm": "^10.0.1",
+    "@nestjs/typeorm": "^10.0.2",
     "@slack/webhook": "^7.0.2",
     "@types/nanoid": "^3.0.0",
     "@types/uuid": "^9.0.7",
