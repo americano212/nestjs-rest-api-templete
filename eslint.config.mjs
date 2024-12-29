@@ -58,13 +58,7 @@ export default [
         },
       ],
 
-      'prettier/prettier': [
-        'error',
-        {
-          endOfLine: 'lf',
-          semi: true,
-        },
-      ],
+      'prettier/prettier': ['error'],
     },
   },
 ];
