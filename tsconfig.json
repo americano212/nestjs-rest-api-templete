@@ -7,7 +7,6 @@
     "target": "ES2021",
     "outDir": "dist",
     "module": "commonjs",
-    "moduleResolution": "node",
     "incremental": true,
     "declaration": true,
     "newLine": "lf",
@@ -28,6 +27,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["typings/global.d.ts", "src/**/*", "test/**/*", "bin/**/*", "jest.config.ts"],
+  "include": [
+    "typings/global.d.ts",
+    "src/**/*",
+    "test/**/*",
+    "bin/**/*",
+    "jest.config.ts",
+    "eslint.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }
