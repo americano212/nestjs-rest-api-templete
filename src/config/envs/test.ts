@@ -5,7 +5,7 @@ export const config = {
     host: process.env['TEST_DB_HOST'],
     port: process.env['TEST_DB_PORT'],
     username: process.env['TEST_DB_USER'],
-    password: process.env['TEST_DB_PASSWORD'] ,
+    password: process.env['TEST_DB_PASSWORD'],
     database: process.env['TEST_DB_NAME'],
     keepConnectionAlive: true,
     connectTimeout: 15000,
