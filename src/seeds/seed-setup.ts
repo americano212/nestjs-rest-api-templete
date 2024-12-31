@@ -29,10 +29,10 @@ export class Seed1703915494755 implements MigrationInterface {
   }
 
   private async checkTableExist(table_name: string, queryRunner: QueryRunner): Promise<boolean> {
-    const dbName =
-      process.env['NODE_ENV'] === 'production' || process.env['NODE_ENV'] === 'development'
-        ? process.env['DEV_DB_NAME']
-        : process.env['TEST_DB_NAME'];
+    let dbName: string = '';
+    if (process.env['NODE_ENV'] === 'production') dbName = process.env['DB_NAME'] || '';
+    if (process.env['NODE_ENV'] === 'development') dbName = process.env['DEV_DB_NAME'] || '';
+    if (process.env['NODE_ENV'] === 'test') dbName = process.env['TEST_DB_NAME'] || '';
 
     const result = await queryRunner.query(`
     SELECT count(*) as cnt

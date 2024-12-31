@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "#entities/*": ["./src/entities/*"],
+      "#entities/*": ["./src/entities/*"]
     },
     "target": "ES2021",
     "outDir": "dist",
-    "module": "NodeNext",
+    "module": "commonjs",
     "incremental": true,
     "declaration": true,
     "newLine": "lf",
@@ -25,7 +25,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": [
     "typings/global.d.ts",
@@ -33,7 +33,7 @@
     "test/**/*",
     "bin/**/*",
     "jest.config.ts",
-    "eslint.config.mjs",
+    "eslint.config.mjs"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
