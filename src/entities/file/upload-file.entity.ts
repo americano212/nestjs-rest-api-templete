@@ -18,10 +18,10 @@ export class UploadFile extends CoreEntity {
   @IsString()
   public url!: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  @Column({ type: 'int', unsigned: true })
   @IsNotEmpty()
   @IsInt()
-  public size!: number;
+  public fileSize!: number;
 
   @Column({ type: 'varchar', nullable: false, select: false })
   @IsNotEmpty()

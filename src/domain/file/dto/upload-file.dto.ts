@@ -4,7 +4,7 @@ import { PickType } from '@nestjs/swagger';
 export class UploadFileDto extends PickType(UploadFile, [
   'originalName',
   'url',
-  'size',
+  'fileSize',
   'encoding',
   'mimeType',
 ] as const) {}
