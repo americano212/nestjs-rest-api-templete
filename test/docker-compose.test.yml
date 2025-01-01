@@ -1,0 +1,9 @@
+services:
+  test-mysql-db:
+    image: mysql/mysql-server:latest
+    ports:
+      - 33061:3306
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=docker-mysql-db
