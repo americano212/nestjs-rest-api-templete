@@ -5,6 +5,5 @@ export class UploadFileDto extends PickType(UploadFile, [
   'originalName',
   'url',
   'fileSize',
-  'encoding',
   'mimeType',
 ] as const) {}

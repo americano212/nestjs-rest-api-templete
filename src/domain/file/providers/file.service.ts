@@ -46,7 +46,6 @@ export class FileService {
       originalName: file.originalname,
       url: url,
       fileSize: file.size,
-      encoding: file.encoding,
       mimeType: file.mimetype,
     };
 

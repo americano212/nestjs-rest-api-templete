@@ -26,10 +26,5 @@ export class UploadFile extends CoreEntity {
   @Column({ type: 'varchar', nullable: false, select: false })
   @IsNotEmpty()
   @IsString()
-  public encoding!: string;
-
-  @Column({ type: 'varchar', nullable: false, select: false })
-  @IsNotEmpty()
-  @IsString()
   public mimeType!: string;
 }
