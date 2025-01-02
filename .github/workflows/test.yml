@@ -1,13 +1,11 @@
-name: NestJS-Test
+name: Jest Testing
 
 on:
-  # push:
-  #   branches:
-  #     - main
   pull_request:
     branches:
       - main
-      # - develop
+      - release/v*
+      - develop
 
 jobs:
   build:

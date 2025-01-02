@@ -45,8 +45,7 @@ export class FileService {
     const uploadFileData: UploadFileDto = {
       originalName: file.originalname,
       url: url,
-      size: file.size,
-      encoding: file.encoding,
+      fileSize: file.size,
       mimeType: file.mimetype,
     };
 

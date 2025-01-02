@@ -1,0 +1,22 @@
+services:
+# Database for Development. (PORT 33060)
+  dev-db:
+    image: mysql/mysql-server:latest
+    ports:
+      - 33060:3306
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=docker-mysql-db
+    volumes:
+      - ./data:/var/lib/mysql
+  # Database for E2E test. (PORT 33061)
+  # Before `npm run test:e2e:auto`
+  test-db:
+    image: mysql/mysql-server:latest
+    ports:
+      - 33061:3306
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=docker-mysql-db
